@@ -7,9 +7,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 /**
  * 画面上の全てのブロックがどこにあるのかと、現在落下中のブロックを取得
  * キー入力を受け取り、移動操作が有効かどうか判断
- * ゲーム画面の更新
+ * ゲーム画面上のgridを更新
  */
-
 public class TetrominoGrid {
     private Tetromino fallingBlock;
     private Vector2 fallingBlockLocation;
@@ -17,9 +16,9 @@ public class TetrominoGrid {
 
     private int gridHeight = 20;
     private int gridWidth = 10;
-    private long autoDropRate = 500000000;
+    private long autoDropRate = 500000000; //ブロックの落下スピード（ナノ秒）
     private long lastAutoDrop;
-    private long moveRate = 100000000;
+    private long moveRate = 100000000; //キー入力でブロックを左,右,下方向に移動する際のスピード（ナノ秒）
     private long lastMove;
 
     public TetrominoGrid() {
@@ -31,7 +30,7 @@ public class TetrominoGrid {
     //新しい落下ブロックを作成
     private void newFallingBlock() {
         fallingBlock = new Tetromino();
-        fallingBlockLocation = new Vector2(gridWidth / 2, gridHeight - 1); //作成位置を画面外の上部中央に指定
+        fallingBlockLocation = new Vector2(gridWidth / 2, gridHeight + 1); //作成位置を画面の上部中央に指定
     }
 
     /**
@@ -92,8 +91,8 @@ public class TetrominoGrid {
             if(timeForAutoDrop()) {
                 lastAutoDrop = TimeUtils.nanoTime();
             }
-        } else { //これ以上下に移動できない場合
-            //落下中のブロックをgridに追加
+        } else {
+            //これ以上下に移動できない場合、落下中のブロックをgridに追加
             for(Vector2 coord : translateBlockCoords(fallingBlock, fallingBlockLocation)) {
                 if(coord.y < gridHeight && coord.x < gridWidth)
                     grid[(int)coord.y][(int)coord.x] = true;

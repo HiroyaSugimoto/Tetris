@@ -20,7 +20,7 @@ public class TetrominoGridRenderer {
         camera = new OrthographicCamera();
         //画面サイズの基本単位は1tetrominoと等しい
         //プレイフィールドは10×20
-        //プレイフィールドは画面中央に配置し、1ユニットが空白
+        //プレイフィールドは画面中央に配置し、1ユニット分の余白あり
         //カメラの描画範囲は12×22
         camera.setToOrtho(false, 12, 22);
 
@@ -28,6 +28,7 @@ public class TetrominoGridRenderer {
         this.grid = grid;
         gridRectangles = createGridRectangles();
 
+        //各色名に関連する画像を指定して関連配列(ArrayMap)に格納
         textures = new ArrayMap<colors, Texture>();
         textures.put(colors.RED, new Texture(Gdx.files.internal("red.png")));
         textures.put(colors.GREEN, new Texture(Gdx.files.internal("green.png")));

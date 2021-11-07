@@ -8,6 +8,7 @@ public class Tetromino {
     public static enum shape {O, I, S, Z, L, J, T};
     public enum colors {RED, GREEN, BLUE};
 
+    //各ブロックの形を指定
     private static Vector2[][] shapes = {
             //O
             {new Vector2(-1, 0), new Vector2(0, 0), new Vector2(-1, -1), new Vector2(0, -1)},
@@ -44,6 +45,7 @@ public class Tetromino {
         currentShape = shapes[type.ordinal()];
     }
 
+    //落下中のブロックを時計回りに回転させる際の処理
     public void rotateClockwise() {
         if (shapeType != shape.O) {
             for (int i = 0; i < currentShape.length; i++) {
@@ -52,6 +54,7 @@ public class Tetromino {
         }
     }
 
+    //落下中のブロックを反時計回りさせる際の処理
     public void rotateCounterClockwise() {
         if (shapeType != shape.O) {
             for (int i = 0; i < currentShape.length; i++) {
@@ -60,6 +63,7 @@ public class Tetromino {
         }
     }
 
+    //落下中のブロックの状態を返却する
     public Array<Vector2> getCurrentShape(){
         return new Array<Vector2>(currentShape);
     }

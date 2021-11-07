@@ -15,8 +15,8 @@ public class GameScreen implements Screen, InputProcessor {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1); //背景色を指定
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //前のフレームの描画をクリア
         controller.update(delta);
         grid.update(delta);
         renderer.render(delta);
@@ -56,6 +56,7 @@ public class GameScreen implements Screen, InputProcessor {
 
     }
 
+    //キーを押した際の処理を呼び出し
     @Override
     public boolean keyDown(int keycode) {
 
@@ -70,6 +71,7 @@ public class GameScreen implements Screen, InputProcessor {
         return true;
     }
 
+    //キーが離された際の処理を呼び出し
     @Override
     public boolean keyUp(int keycode) {
 

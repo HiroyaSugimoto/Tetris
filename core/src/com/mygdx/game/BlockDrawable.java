@@ -8,6 +8,7 @@ public class BlockDrawable {
     public int y;
     public colors color;
 
+    //引数ありのコンストラクタ
     public BlockDrawable(int x, int y, colors color) {
         this.x = x;
         this.y = y;
