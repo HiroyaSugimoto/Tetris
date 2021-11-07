@@ -48,7 +48,7 @@ public class TetrominoGrid {
     }
 
     private boolean moveTooFast(long tooFast) {
-        return TimeUtils.nanoTime() - lastMove > tooFast;
+        return TimeUtils.nanoTime() - lastMove < tooFast;
     }
 
     private boolean moveTooFast() {
