@@ -231,7 +231,7 @@ public class TetrominoGrid {
             int colNum = 0;
             for(boolean block : row) {
                 if(block) {
-                    blocks.add(new BlockDrawable(colNum, rowNum, Tetromino.colors.GREEN));
+                    blocks.add(new BlockDrawable(colNum, rowNum, Tetromino.colors.RED));
                 }
                 colNum++;
             }

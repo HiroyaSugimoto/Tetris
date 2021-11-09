@@ -20,11 +20,11 @@ public class GameScreen implements Screen, InputProcessor {
         controller.update(delta);
         grid.update(delta);
         renderer.render(delta);
+
     }
 
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override

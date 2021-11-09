@@ -18,6 +18,7 @@ public class TetrominoGridRenderer {
 
     public TetrominoGridRenderer(TetrominoGrid grid) {
         camera = new OrthographicCamera();
+      //  viewport = new FitViewport(800, 480, camera);
         //画面サイズの基本単位は1tetrominoと等しい
         //プレイフィールドは10×20
         //プレイフィールドは画面中央に配置し、1ユニット分の余白あり
@@ -30,19 +31,21 @@ public class TetrominoGridRenderer {
 
         //各色名に関連する画像を指定して関連配列(ArrayMap)に格納
         textures = new ArrayMap<colors, Texture>();
-        textures.put(colors.RED, new Texture(Gdx.files.internal("red.png")));
-        textures.put(colors.GREEN, new Texture(Gdx.files.internal("green.png")));
-        textures.put(colors.BLUE, new Texture(Gdx.files.internal("blue.png")));
+        textures.put(colors.RED, new Texture(Gdx.files.internal("Block_Red.png")));
+        textures.put(colors.BLUE, new Texture(Gdx.files.internal("Block_Blue.png")));
+
     }
 
     public void render(float delta) {
+        //カメラ自身の座標計算
         camera.update();
 
-        //カメラによる描画
+        //update()の結果をスプライトに適用させる準備
         batch.setProjectionMatrix(camera.combined);
 
         //現在のgridを描画
         batch.begin();
+
         for(BlockDrawable block : grid.getGridBlocksToDraw()) {
             Rectangle rect = gridRectangles[(int)block.y][(int)block.x];
             rect.width = 1;
@@ -51,6 +54,7 @@ public class TetrominoGridRenderer {
             rect.y = block.y + 1;
             batch.draw(textures.get(block.color), rect.x, rect.y, rect.width, rect.height);
         }
+
         batch.end();
 
     }
@@ -58,7 +62,7 @@ public class TetrominoGridRenderer {
     private Rectangle[][] createGridRectangles(){
         Rectangle[][] rects = new Rectangle[20][10];
 
-        //10×20のrectangleを作成
+        //10×20のプレイエリア(rectangle)を作成
         for(int row = 0; row < 20; row++) {
             for(int col = 0; col < 10; col++) {
                 Rectangle rect = new Rectangle();
